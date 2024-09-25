@@ -1,5 +1,6 @@
 const app = require('express')()
 const port = 8080
+const req = require('express/lib/request')
 const swaggerUi = require('swagger-ui-express')
 const yamljs = require("yamljs")
 const swaggerDocument = yamljs.load('./docs/swagger.yaml')
@@ -20,9 +21,15 @@ app.get('/games', (req, res) => {
 })
 
 app.get('/games/:id', (req, res) => {
-    if (typeof games[req.params.id - 1] === 'undefined'){
-        return res.status(404).send({error: "Game not found"})
-    }
+    res.send(games[req.params.id - 1])
+})
+
+app.post('/games', (req, res) => {
+    games.push({
+        id: games.length - 1,
+        price: req.body.price,
+        name: req.body.name
+    })
 })
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
