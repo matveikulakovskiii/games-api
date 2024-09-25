@@ -3,6 +3,10 @@ const port = 8080
 const swaggerUi = require('swagger-ui-express')
 const swaggerDocument = require('./docs/swagger.json')
 
+app.get('/games', (req, res) => {
+    res.send(["Witcher3", "Cyberpunk 2077", "World of Warcraft"])
+})
+
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.listen(port, () => {
