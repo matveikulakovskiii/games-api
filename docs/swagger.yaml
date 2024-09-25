@@ -1,0 +1,89 @@
+openapi: 3.0.2
+info:
+    title: Games-api
+    version: 1.0.0
+    description: A brand new API with no content.  Go nuts!
+paths:
+    /games:
+        get:
+            tags:
+                - games
+            responses:
+                '200':
+                    $ref: '#/components/responses/200'
+            summary: Get a list of games
+            description: |
+                Returns a list of games in API
+    '/games/{id}':
+        get:
+            tags:
+                - details
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                Full details of a given game:
+                                    value: |-
+                                        {id: 1, name: "Witcher 3", price: 29.99},
+                                        {id: 2, name: "Cyberpunk 2077", price: 59.99},
+                                        {id: 3, name: "Minecraft", price: 26.99},
+                                        {id: 4, name: "CSGO", price: 0},
+                                        {id: 4, name: "Roblox", price: 0},
+                                        {id: 4, name: "GTA V", price: 29.99},
+                                        {id: 4, name: "Valorant", price: 0},
+                                        {id: 4, name: "WoW", price: 11.99},
+                    description: |
+                        Return full details of a given id game
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                ' Game /id+ was not found':
+                                    value: |-
+                                        {
+                                            "error": "Game \\\id+ was not found in game array"
+                                        }
+                    description: Game was not found in games array
+            operationId: id
+            summary: Get full details of a game
+            description: |
+                Return full details of a given id game
+        parameters:
+            -
+                name: id
+                description: Write id for a game
+                in: path
+                required: true
+components:
+    schemas:
+        error:
+            title: Root Type for error
+            description: ''
+            type: object
+            properties:
+                error:
+                    type: string
+            example:
+                error: Error message.
+    responses:
+        '200':
+            content:
+                application/json:
+                    schema:
+                        type: array
+                        items:
+                            type: string
+                    examples:
+                        List of games:
+                            value:
+                                - Witcher 3
+                                - Cyberpunk 2077
+                                - World of Warcraft
+            description: Returns a list of games
