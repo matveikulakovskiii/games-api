@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const res = require('express/lib/response')
 const req = require('express/lib/request')
 const app = express()
@@ -7,6 +8,7 @@ const swaggerUi = require('swagger-ui-express')
 const yamljs = require("yamljs")
 const swaggerDocument = yamljs.load('./docs/swagger.yaml')
 
+app.use(cors())
 app.use(express.json())
 
 const games = [
