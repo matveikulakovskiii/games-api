@@ -17,6 +17,10 @@ paths:
         post:
             requestBody:
                 description: A new game to be created
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/new-game'
                 required: true
             tags:
                 - new-game
@@ -37,6 +41,7 @@ paths:
                                     value:
                                         error: One or all params are missing
                     description: One or all params are missing
+            operationId: 'name, price'
             summary: Creates a game
             description: Creates a new game
     '/games/{id}':
@@ -80,6 +85,40 @@ paths:
             summary: Get full details of a game
             description: |
                 Return full details of a given id game
+        delete:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/delete-game'
+                required: true
+            tags:
+                - delete-game
+            responses:
+                '204':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/delete-game'
+                            examples:
+                                No content:
+                                    value:
+                                        id: No content
+                    description: Game Deleted
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                There is no game with this id:
+                                    value:
+                                        error: There is no game with this id.
+                    description: |
+                        There is no game with this id
+            operationId: id
+            summary: Delete game
+            description: Delete game y id
         parameters:
             -
                 name: id
@@ -113,6 +152,17 @@ components:
             example:
                 name: Tetris
                 price: 0.99
+        delete-game:
+            description: ''
+            required:
+                - id
+            type: object
+            properties:
+                id:
+                    description: ''
+                    type: string
+            example:
+                id: 1
     responses:
         '200':
             content:

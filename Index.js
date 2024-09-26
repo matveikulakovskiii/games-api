@@ -14,10 +14,10 @@ const games = [
     {id: 2, name: "Cyberpunk 2077", price: 59.99},
     {id: 3, name: "Minecraft", price: 26.99},
     {id: 4, name: "CSGO", price: 0},
-    {id: 4, name: "Roblox", price: 0},
-    {id: 4, name: "GTA V", price: 29.99},
-    {id: 4, name: "Valorant", price: 0},
-    {id: 4, name: "WoW", price: 11.99},
+    {id: 5, name: "Roblox", price: 0},
+    {id: 6, name: "GTA V", price: 29.99},
+    {id: 7, name: "Valorant", price: 0},
+    {id: 8, name: "WoW", price: 11.99},
 ]
 
 app.get('/games', (req, res) => {
@@ -43,6 +43,16 @@ app.post('/games', (req, res) => {
     res.status(201)
         .location('${getBaseUrl(req)}/games${games.lemgth}')
         .send(game)
+})
+
+app.delete('/games/:id',(req, res) => {
+    if (typeof games[req.params.id -1] === 'undefined'){
+        return res.status(404).send({error: "Game not found"})
+    }
+
+    games.splice(req.params.id -1, 1)
+
+    res.status(204).send({error:"No content"})
 })
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
