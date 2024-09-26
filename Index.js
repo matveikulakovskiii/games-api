@@ -1,7 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const res = require('express/lib/response')
-const req = require('express/lib/request')
 const app = express()
 const port = 8080
 const swaggerUi = require('swagger-ui-express')
@@ -43,7 +41,7 @@ app.post('/games', (req, res) => {
     games.push(game)
 
     res.status(201)
-        .location('${getBaseUrl(req)}/games${games.lemgth}')
+        .location('${getBaseUrl(req)}/games${games.length}')
         .send(game)
 })
 
