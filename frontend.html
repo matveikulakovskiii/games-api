@@ -23,7 +23,7 @@
         </tr>
         <tr v-for="game in games" :key="game.id">
             <td @click="getGame(game.id)">{{ game.name }}</td>
-            <td>{{ game.price }}</td>
+            <td @click="getGame(game.id)">{{ game.price }}</td>
             <td>
                 <button @click="deleteGame(game.id)" class="btn btn-danger">Delete</button>
                 <button @click="openEditModal(game)" class="btn btn-warning">Edit</button>
@@ -31,9 +31,9 @@
         </tr>
     </table>
 
-    
+
     <div class="addfront">
-        <button @click="openAddModal(game)" class="btn btn-success">Add Game</button>
+        <button @click="openAddModal(game)" class="btn btn-success" >Add Game</button>
     </div>
 
     <div id="editGameModal" class="modal" tabindex="-1">
@@ -115,6 +115,19 @@
             </div>
         </div>
     </div>
+
+    <div class="addmodel">
+        <div class="mb-3">
+            <label for="gameName" class="form-label">Game Name</label>
+            <input v-model="newGame.name" type="text" class="form-control" id="gameName">
+        </div>
+        <div class="mb-3">
+            <label for="gamePrice" class="form-label">Game Price</label>
+            <input v-model="newGame.price" type="number" class="form-control" id="gamePrice">
+        </div>
+        <button @click="addGame" class="btn btn-primary">Add Game</button>
+    </div>
+
 
 </div>
 <script src="https://unpkg.com/vue@3.2.46/dist/vue.global.js"></script>

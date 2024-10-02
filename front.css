@@ -8,41 +8,85 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 50px;
     background-color: #f8f9fa;
 }
 
 .addfront {
     display: flex;
     justify-content: center;
+    display: none;
 }
 
 #gamesTable {
     width: 100%;
     margin-top: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    background-color: #ffffff;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
 }
 
 #gamesTable th {
-    background-color: #007bff;
+    background-color: #343a40;
     color: white;
-    padding: 10px;
+    padding: 12px;
     text-align: left;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 #gamesTable td {
-    padding: 10px;
-    cursor: pointer;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+    color: #343a40;
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+#gamesTable tr:nth-child(even) td {
+    background-color: lightgrey;
 }
 
 #gamesTable td:hover {
-    background-color: #f1f1f1;
+    background-color: #e2e6ea;
 }
 
 #gamesTable button {
-    padding: 6px 12px;
+    padding: 8px 16px;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+#gamesTable button:hover {
+    background-color: #bd2130;
+
+}
+
+#gamesTable td:first-child {
+    border-radius: 10px 0 0 10px;
+
+}
+
+#gamesTable td:last-child {
+    border-radius: 0 10px 10px 0;
+    
+}
+
+#gamesTable th:first-child {
+    border-radius: 10px 0 0 0;
+
+}
+
+#gamesTable th:last-child {
+    border-radius: 0 10px 0 0;
+
 }
 
 
