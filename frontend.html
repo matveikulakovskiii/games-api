@@ -26,6 +26,7 @@
             <td>{{ game.price }}</td>
             <td>
                 <button @click="deleteGame(game.id)" class="btn btn-danger">Delete</button>
+                <button @click="openEditModal(game)" class="btn btn-warning">Edit</button>
             </td>
         </tr>
     </table>
@@ -34,7 +35,30 @@
         <button @click="openAddModal(game)" class="btn btn-success">Add Game</button>
     </div>
 
-
+    <div id="editGameModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Game</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editGameName" class="form-label">Game Name</label>
+                        <input v-model="gameInModal.name" type="text" class="form-control" id="editGameName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editGamePrice" class="form-label">Game Price</label>
+                        <input v-model="gameInModal.price" type="number" class="form-control" id="editGamePrice">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button @click="updateGame" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="gameInModal" class="modal" tabindex="-1">
         <div class="modal-dialog">

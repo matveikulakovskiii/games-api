@@ -66,3 +66,21 @@ function getBaseUrl(req){
         ? 'https' : 'http' + '://${req.headers.host}'
 }
 
+app.put('/games/:id', (req, res) => {
+    const gameId = parseInt(req.params.id);
+    const gameIndex = games.findIndex(game => game.id === gameId);
+
+    if (gameIndex === -1) {
+        return res.status(404).send({error: 'Game not found'});
+    }
+
+    // Обновляем только имя и цену игры
+    if (req.body.name) {
+        games[gameIndex].name = req.body.name;
+    }
+    if (req.body.price !== undefined) {
+        games[gameIndex].price = req.body.price;
+    }
+
+    res.send(games[gameIndex]);
+});
