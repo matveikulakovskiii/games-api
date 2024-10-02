@@ -22,6 +22,12 @@ const vue = Vue.createApp({
             let editGameModal = new bootstrap.Modal(document.getElementById('editGameModal'), {});
             editGameModal.show();
         },
+        openDeleteModal: function(game) {
+
+            this.gameInModal = {...game};
+            let deleteGameModal = new bootstrap.Modal(document.getElementById('deleteGameModal'), {});
+            deleteGameModal.show();
+        },
         addGame: async function () {
 
             const response = await fetch('http://localhost:8080/games', {
