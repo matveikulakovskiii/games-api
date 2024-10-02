@@ -19,12 +19,14 @@
         <tr>
             <th>Name</th>
             <th>Price</th>
-
+            <th>Action</th>
         </tr>
         <tr v-for="game in games" :key="game.id">
             <td @click="getGame(game.id)">{{ game.name }}</td>
             <td>{{ game.price }}</td>
-
+            <td>
+                <button @click="deleteGame(game.id)" class="btn btn-danger">Delete</button>
+            </td>
         </tr>
     </table>
 

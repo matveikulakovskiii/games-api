@@ -32,6 +32,16 @@ const vue = Vue.createApp({
                 this.newGame = {name: '', price: null};
             }
         },
+        deleteGame: async function (id) {
+
+            const response = await fetch(`http://localhost:8080/games/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                this.games = this.games.filter(game => game.id !== id);
+            }
+        },
         openAddModal: function(game) {
 
             this.gameInModal = {...game};
